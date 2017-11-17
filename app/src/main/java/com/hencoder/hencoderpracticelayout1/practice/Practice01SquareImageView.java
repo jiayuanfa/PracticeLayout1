@@ -9,6 +9,8 @@ import android.widget.ImageView;
  * 需要把它写成正方形的 ImageView
  */
 public class Practice01SquareImageView extends ImageView {
+
+
     public Practice01SquareImageView(Context context) {
         super(context);
     }
@@ -17,6 +19,11 @@ public class Practice01SquareImageView extends ImageView {
         super(context, attrs);
     }
 
+    /**
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     */
     public Practice01SquareImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -30,8 +37,17 @@ public class Practice01SquareImageView extends ImageView {
 
         // 先用 getMeasuredWidth() 和 getMeasuredHeight() 取到 super.onMeasure() 的计算结果
 
-        // 然后通过计算，让宽度和高度一致
+        int imageViewWidth = getMeasuredWidth();
+        int imageViewHeight = getMeasuredHeight();
+
+        // 然后通过计算，让宽度和高度一致 保持图像为正方形
+        if (imageViewWidth > imageViewHeight) {
+            imageViewWidth = imageViewHeight;
+        }else {
+            imageViewHeight = imageViewWidth;
+        }
 
         // 再用 setMeasuredDimension(width, height) 来保存最终的宽度和高度
+        setMeasuredDimension(imageViewWidth,imageViewHeight);
     }
 }
